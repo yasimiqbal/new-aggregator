@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\ArticleController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\ForgetPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -18,5 +19,12 @@ Route::group(['prefix' => 'password/', 'as' => 'password.'], function () {
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
+
+    // articles routes
+    Route::group(['prefix' => 'articles/', 'as' => 'articles.'], function () {
+        Route::get('/', [ArticleController::class, 'index']);
+        Route::get('/{id}', [ArticleController::class, 'show']);
+//        Route::post('/fetch', [ArticleController::class, 'fetchNews']);
+    });
 });
 
