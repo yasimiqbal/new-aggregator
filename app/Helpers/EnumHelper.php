@@ -12,5 +12,11 @@ class APIBaseUrls
     const NEWS_API = 'https://newsapi.org/v2/';
     const GUARDIAN = 'https://content.guardianapis.com/';
     const NEW_YEAR_TIMES = 'https://api.nytimes.com/svc/';
+}
 
+class PreferenceTypes
+{
+    const SOURCE = 1;
+    const CATEGORY = 2;
+    const AUTHOR = 3;
 }

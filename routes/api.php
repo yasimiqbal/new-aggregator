@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\V1\ArticleController;
+use App\Http\Controllers\Api\V1\NewsFeedController;
+use App\Http\Controllers\Api\V1\PreferenceController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\ForgetPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -21,10 +23,19 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
 
     // articles routes
-    Route::group(['prefix' => 'articles/', 'as' => 'articles.'], function () {
+    Route::group(['prefix' => 'articles/'], function () {
         Route::get('/', [ArticleController::class, 'index']);
         Route::get('/{id}', [ArticleController::class, 'show']);
 //        Route::post('/fetch', [ArticleController::class, 'fetchNews']);
     });
+
+    // preferences routes
+    Route::group(['prefix' => 'preferences/' ], function () {
+        Route::get('/', [PreferenceController::class, 'index']);
+        Route::get('/{id}', [PreferenceController::class, 'show']);
+        Route::post('/store', [PreferenceController::class, 'store']);
+    });
+
+    Route::get('/news/feed', [NewsFeedController::class, 'newsFeed']);
 });
 

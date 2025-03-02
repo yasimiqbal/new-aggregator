@@ -28,7 +28,7 @@ class FetchNewsArticlesCommand extends Command
     public function __construct(NewsService $newsService)
     {
         parent::__construct();
-        $this->$newsService = $newsService;
+        $this->newsService = $newsService;
     }
 
     /**

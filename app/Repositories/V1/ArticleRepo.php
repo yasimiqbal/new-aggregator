@@ -45,4 +45,22 @@ class ArticleRepo extends BaseRepo
                 $query->whereDate('source', 'like', '%' . $params['source'] . '%');
             });
     }
+
+    /**
+     * @param $preferences
+     * @return mixed
+     */
+    public function fetchUserNewsFeed($preferences): mixed
+    {
+        return $this->model()->query()
+            ->when(!empty($preferences['sources']), function ($query) use ($preferences) {
+                $query->whereIn('source', $preferences['sources']);
+            })
+            ->when(!empty($preferences['categories']), function ($query) use ($preferences) {
+                $query->orWhereIn('category', $preferences['categories']);
+            })
+            ->when(!empty($preferences['authors']), function ($query) use ($preferences) {
+                $query->orWhereIn('author', $preferences['authors']);
+            });
+    }
 }
