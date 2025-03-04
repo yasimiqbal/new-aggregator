@@ -64,11 +64,9 @@ class NewsService
      */
     public function fetchAndStoreArticles(): void
     {
-        DB::beginTransaction();
         foreach ($this->sources as $source => $config) {
             $this->fetchAndProcessArticles($source, $config);
         }
-        DB::commit();
     }
 
     /**
@@ -90,11 +88,9 @@ class NewsService
                 }
                 $this->articleRepo->insert($mappedArticles);
             } else {
-                DB::rollBack();
                 throw new \Exception("{$source} API returned an empty response.");
             }
         } catch (GuzzleException|\Exception $e) {
-            DB::rollBack();
             Log::error("Error fetching from {$source}: " . $e->getMessage(), [
                 'trace' => $e->getTraceAsString()
             ]);
