@@ -3,7 +3,6 @@
 use App\Http\Controllers\Api\V1\ArticleController;
 use App\Http\Controllers\Api\V1\NewsFeedController;
 use App\Http\Controllers\Api\V1\PreferenceController;
-use App\Http\Controllers\Api\V1\UserController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\ForgetPasswordController;
 use App\Http\Controllers\Auth\RegisterController;

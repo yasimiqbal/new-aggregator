@@ -41,8 +41,8 @@ RUN mkdir -p /var/www/html/storage/logs /var/www/html/bootstrap/cache \
     && find /var/www/html/storage /var/www/html/bootstrap/cache -type d -exec chmod 775 {} \; \
     && find /var/www/html/storage /var/www/html/bootstrap/cache -type f -exec chmod 664 {} \;
 
-# Add the cron job
-RUN echo "* * * * * www-data php /var/www/html/artisan schedule:run >> /var/log/cron.log 2>&1" > /etc/cron.d/schedule \
+# Add the cron job \
+RUN echo "* * * * * www-data /usr/local/bin/php /var/www/html/artisan schedule:run >> /var/log/cron.log 2>&1" > /etc/cron.d/schedule \
     && chmod 0644 /etc/cron.d/schedule \
     && crontab /etc/cron.d/schedule
 
@@ -57,4 +57,4 @@ COPY ./docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 # Use the entrypoint script to start both services
-ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+ENTRYPOINT ["docker-entrypoint.sh"]
