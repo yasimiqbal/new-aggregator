@@ -4,6 +4,7 @@ namespace App\Services\V1;
 
 use App\Repositories\V1\ArticleRepo;
 use App\Repositories\V1\PreferenceRepo;
+use Illuminate\Database\RecordNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use PreferenceTypes;
 
@@ -36,8 +37,8 @@ class NewsFeedService
         $userId = Auth::id();
         $preferences = $this->preferenceRepo->findByClause(['user_id' => $userId])->get();
 
-        if (empty($preferences)) {
-            throw new \Exception('No preferences found for this user.');
+        if (isset($preferences) && count($preferences) <= 0) {
+            throw new RecordNotFoundException('No preferences found for this user.');
         }
 
         $typeMappings = [

@@ -35,9 +35,9 @@ class PreferenceService
 
     /**
      * @param $id
-     * @return object
+     * @return object|null
      */
-    public function showPreference($id): object
+    public function showPreference($id): ?object
     {
         return $this->preferenceRepo->find($id);
     }

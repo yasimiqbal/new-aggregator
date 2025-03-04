@@ -10,7 +10,6 @@ use App\Services\V1\NewsService;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
 class ArticleController extends Controller
@@ -18,7 +17,7 @@ class ArticleController extends Controller
 
     public ArticleService $articleService;
 
-    public function __construct(ArticleService $articleService, private NewsService $newsService)
+    public function __construct(ArticleService $articleService)
     {
         $this->articleService = $articleService;
     }
@@ -53,8 +52,12 @@ class ArticleController extends Controller
     {
         try {
             $article = $this->articleService->getArticleById($id);
+            if(!$article) {
+                return $this->notFoundResponse('Article not found');
+            }
+
             $article = new ArticleResource($article);
-            return $this->successResponse($article, 'Article retrieved successfully');
+            return $this->successResponse( 'Article retrieved successfully', $article);
         } catch (ModelNotFoundException $e) {
             return $this->notFoundResponse('Article not found');
         } catch (\Exception $e) {

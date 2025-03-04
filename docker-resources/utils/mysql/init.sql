@@ -1,1 +1,1 @@
-CREATE DATABASE IF NOT EXISTS news_aggregator;
+CREATE DATABASE IF NOT EXISTS news-aggregator;

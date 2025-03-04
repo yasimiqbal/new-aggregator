@@ -26,9 +26,9 @@ class ArticleService
 
     /**
      * @param int $id
-     * @return object
+     * @return object|null
      */
-    public function getArticleById(int $id): object
+    public function getArticleById(int $id): ?object
     {
         return $this->articleRepo->find($id);
     }

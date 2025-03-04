@@ -62,8 +62,11 @@ class PreferenceController extends Controller
     {
         try {
             $preference = $this->preferenceService->showPreference($id);
+            if (!$preference) {
+                return $this->notFoundResponse('Preference not found');
+            }
             $preference = new PreferenceResource($preference);
-            return $this->successResponse( 'Preference retrieved successfully.', $preference);
+            return $this->successResponse('Preference retrieved successfully.', $preference);
         } catch (\Exception $e) {
             return $this->errorResponse($e->getMessage());
         }
@@ -77,7 +80,7 @@ class PreferenceController extends Controller
     {
         try {
             $preferences = $this->preferenceService->storePreferences($request);
-            return $this->successResponse($preferences, 'Preferences saved successfully.');
+            return $this->successResponse($preferences, 'Preferences saved successfully.', 201);
         } catch (\Exception $e) {
             return $this->errorResponse($e->getMessage());
         }

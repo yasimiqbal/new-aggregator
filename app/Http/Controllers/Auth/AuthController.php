@@ -19,11 +19,6 @@ class AuthController extends Controller
         $this->userService = $userService;
     }
 
-    public function index(): JsonResponse
-    {
-        return $this->notVerified('Unauthorized');
-    }
-
     /**
      * @param LoginRequest $request
      * @return JsonResponse
@@ -36,7 +31,7 @@ class AuthController extends Controller
         } catch (ValidationException $e) {
             return $this->validationErrorResponse($e->getMessage());
         } catch (\Exception $e) {
-            return $this->errorResponse($e->getMessage(), $e->getCode());
+            return $this->errorResponse($e->getMessage(), [], 422);
         }
     }
 
