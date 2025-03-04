@@ -55,7 +55,7 @@ class UserService
     {
         $user = $this->userRepo->findByClause(['email' => $params['email']])->first();
         if (!$user || !Hash::check($params['password'], $user->password)) {
-            throw new \Exception('Invalid credentials.', 401);
+            throw new \Exception('Invalid credentials.', 422);
         }
 
         $token = $user->createToken('API Token')->plainTextToken;

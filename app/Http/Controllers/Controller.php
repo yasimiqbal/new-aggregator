@@ -8,11 +8,12 @@ abstract class Controller
 {
 
     /**
-     * @param $result
      * @param $message
+     * @param mixed|null $result
+     * @param int $code
      * @return JsonResponse
      */
-    public function successResponse($message, mixed $result = null): JsonResponse
+    public function successResponse($message, mixed $result = null, int $code = 200): JsonResponse
     {
         $response = [
             'status' => true,
@@ -23,7 +24,7 @@ abstract class Controller
             $response['data'] = $result;
         }
 
-        return response()->json($response, 200);
+        return response()->json($response, $code);
     }
 
     /**
@@ -48,11 +49,12 @@ abstract class Controller
 
     /**
      * @param string $message
+     * @param int $code
      * @return JsonResponse
      */
-    public function notFoundResponse(string $message = 'Resource not found'): JsonResponse
+    public function notFoundResponse(string $message = 'Resource not found', int $code = 404): JsonResponse
     {
-        return $this->errorResponse($message, [], 404);
+        return $this->errorResponse($message, [], $code);
     }
 
     /**
