@@ -6,6 +6,18 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use PreferenceTypes;
 
+/**
+ * @OA\Schema(
+ *     schema="PreferenceResource",
+ *     title="PreferenceResource",
+ *     description="User preference resource",
+ *     @OA\Property(property="id", type="integer", example=1),
+ *     @OA\Property(property="name", type="string", example="Technology"),
+ *     @OA\Property(property="source", type="string", example="TechCrunch", nullable=true),
+ *     @OA\Property(property="category", type="string", example="Science", nullable=true),
+ *     @OA\Property(property="author", type="string", example="John Doe", nullable=true)
+ * )
+ */
 class PreferenceResource extends JsonResource
 {
     /**

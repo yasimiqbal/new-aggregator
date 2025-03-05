@@ -5,6 +5,16 @@ namespace App\Http\Resources\V1\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @OA\Schema(
+ *     schema="UserResource",
+ *     title="User Resource",
+ *     description="User details",
+ *     @OA\Property(property="id", type="integer", example=1),
+ *     @OA\Property(property="name", type="string", example="John Doe"),
+ *     @OA\Property(property="email", type="string", format="email", example="john.doe@example.com")
+ * )
+ */
 class UserResource extends JsonResource
 {
     /**

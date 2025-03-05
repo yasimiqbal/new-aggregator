@@ -4,6 +4,18 @@ namespace App\Http\Resources\V1\User;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
+/**
+ * @OA\Schema(
+ *     schema="UserCollection",
+ *     title="User Collection",
+ *     description="A collection of user resources",
+ *     @OA\Property(
+ *         property="data",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/UserResource")
+ *     )
+ * )
+ */
 class UserCollection extends ResourceCollection
 {
     /**

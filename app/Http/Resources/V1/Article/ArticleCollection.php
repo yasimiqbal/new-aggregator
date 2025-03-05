@@ -4,6 +4,18 @@ namespace App\Http\Resources\V1\Article;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
+/**
+ * @OA\Schema(
+ *     schema="ArticleCollection",
+ *     title="ArticleCollection",
+ *     description="A collection of articles",
+ *     @OA\Property(
+ *         property="data",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/ArticleResource")
+ *     )
+ * )
+ */
 class ArticleCollection extends ResourceCollection
 {
     /**

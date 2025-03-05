@@ -31,8 +31,8 @@ Route::middleware('auth:sanctum')->group(function () {
     // preferences routes
     Route::group(['prefix' => 'preferences/' ], function () {
         Route::get('/', [PreferenceController::class, 'index']);
+        Route::post('/', [PreferenceController::class, 'store']);
         Route::get('/{id}', [PreferenceController::class, 'show']);
-        Route::post('/store', [PreferenceController::class, 'store']);
     });
 
     Route::get('/news/feed', [NewsFeedController::class, 'newsFeed']);
