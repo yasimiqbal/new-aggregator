@@ -153,6 +153,38 @@ With in the news-aggregator container:
      docker exec -it news-aggregator php artisan test
 ```
 
+## For creating swagger file
+
+To create the swagger file.
+
+### Accessing the news-aggregator Container
+
+Open a terminal session in the news-aggregator container by running:
+
+```bash
+    docker exec -it news-aggregator bash
+```
+
+With in the news-aggregator container:
+
+```bash
+     php artisan config:cache
+```
+
+```bash
+     php artisan l5-swagger:generate
+```
+
+### Outside of the news-aggregator container:
+
+```bash
+     docker exec -it news-aggregator php artisan config:cache
+```
+
+```bash
+     docker exec -it news-aggregator php artisan l5-swagger:generate
+```
+
 ## Docker Compose Services
 
 - app: The Laravel application container (news-aggregator).
