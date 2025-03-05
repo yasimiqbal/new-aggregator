@@ -6,6 +6,18 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @OA\Schema(
+ *     schema="ArticleResource",
+ *     title="ArticleResource",
+ *     description="Article resource",
+ *     @OA\Property(property="id", type="integer", example=1),
+ *     @OA\Property(property="title", type="string", example="Breaking News: Laravel Updates"),
+ *     @OA\Property(property="content", type="string", example="Lorem ipsum dolor sit amet..."),
+ *     @OA\Property(property="author", type="string", example="John Doe"),
+ *     @OA\Property(property="published_at", type="string", format="date-time", example="2025-03-06T12:00:00Z")
+ * )
+ */
 class ArticleResource extends JsonResource
 {
     /**

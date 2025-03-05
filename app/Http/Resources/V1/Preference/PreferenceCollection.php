@@ -4,6 +4,18 @@ namespace App\Http\Resources\V1\Preference;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
+/**
+ * @OA\Schema(
+ *     schema="PreferenceCollection",
+ *     title="PreferenceCollection",
+ *     description="A collection of user preferences",
+ *     @OA\Property(
+ *         property="data",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/PreferenceResource")
+ *     )
+ * )
+ */
 class PreferenceCollection extends ResourceCollection
 {
     /**

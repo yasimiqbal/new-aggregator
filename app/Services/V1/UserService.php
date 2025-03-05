@@ -2,6 +2,7 @@
 
 namespace App\Services\V1;
 
+use App\Http\Resources\V1\User\UserResource;
 use App\Mappers\UserMapper;
 use App\Repositories\V1\UserRepo;
 use Carbon\Carbon;
@@ -42,7 +43,7 @@ class UserService
         $user = $this->userRepo->create($data);
 
         $token = $user->createToken('API Token')->plainTextToken;
-
+        $user = new UserResource($user);
         return ['user' => $user, 'token' => $token, 'token_type' => 'Bearer'];
     }
 

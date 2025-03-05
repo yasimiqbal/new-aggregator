@@ -27,8 +27,46 @@ class NewsFeedController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return JsonResponse
+     * @OA\Get(
+     *     path="/api/news/feed",
+     *     tags={"News Feed"},
+     *     summary="Get user news feed",
+     *     description="Retrieves a paginated list of articles based on the user's preferences.",
+     *     security={{"sanctum": {}}},
+     *     @OA\Parameter(
+     *         name="list_size",
+     *         in="query",
+     *         description="Number of articles per page (default: system-defined)",
+     *         required=false,
+     *         @OA\Schema(type="integer", example=10)
+     *     ),
+     *     @OA\Parameter(
+     *         name="page",
+     *         in="query",
+     *         description="Page number for pagination",
+     *         required=false,
+     *         @OA\Schema(type="integer", example=1)
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="User articles retrieved successfully",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="User articles retrieved successfully"),
+     *             @OA\Property(property="data", ref="#/components/schemas/ArticleCollection")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="No preferences found for this user",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="No preferences found for this user.")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Something went wrong"
+     *     )
+     * )
      */
     public function newsFeed(Request $request): JsonResponse
     {
